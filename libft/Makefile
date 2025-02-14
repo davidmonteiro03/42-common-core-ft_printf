@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/02 13:06:53 by dcaetano          #+#    #+#              #
-#    Updated: 2025/02/14 10:34:17 by dcaetano         ###   ########.fr        #
+#    Updated: 2025/02/14 11:00:57 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,25 +41,25 @@ FLAGS      = -Wall -Wextra -Werror
 all: ${NAME}
 
 .c.o:
-	${CC} ${FLAGS} -c $< -o ${<:.c=.o}
+	@${CC} ${FLAGS} -c $< -o ${<:.c=.o}
 
 $(NAME): ${OBJS}
-	${AR} ${NAME} ${OBJS}
-	${LIB} ${NAME}
+	@${AR} ${NAME} ${OBJS}
+	@${LIB} ${NAME}
 
 bonus: ${OBJS} ${OBJS_BONUS}
-	${AR} ${NAME} ${OBJS} ${OBJS_BONUS}
-	${LIB} ${NAME}
+	@${AR} ${NAME} ${OBJS} ${OBJS_BONUS}
+	@${LIB} ${NAME}
 
 so:
-	${CC} -nostartfiles -fPIC ${FLAGS} ${SRCS} ${SRCS_BONUS}
-	gcc -nostartfiles -shared -o libft.so ${OBJS} ${OBJS_BONUS}
+	@${CC} -nostartfiles -fPIC ${FLAGS} ${SRCS} ${SRCS_BONUS}
+	@gcc -nostartfiles -shared -o libft.so ${OBJS} ${OBJS_BONUS}
 
 clean:
-	${RM} ${OBJS} ${OBJS_BONUS}
+	@${RM} ${OBJS} ${OBJS_BONUS}
 
 fclean: clean
-	${RM} ${NAME}
+	@${RM} ${NAME}
 
 re: fclean all
 
