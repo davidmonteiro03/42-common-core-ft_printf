@@ -6,26 +6,36 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 08:59:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/04/23 11:13:33 by dcaetano         ###   ########.fr       */
+/*   Updated: 2025/02/14 10:52:22 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	int	my_ret;
-	int	cc_ret;
+	int				i;
+	int				ret[2];
+	int				in;
+	unsigned int	uin;
 
-	printf("ft_printf: $");
-	fflush(stdout);
-	my_ret = ft_printf(" Name: %x  ", 42);
-	printf("$\n");
-	printf("  printf : $");
-	cc_ret = printf(" Name: %x  ", 42);
-	printf("$");
-	printf("\n----------------\n");
-	printf("my_ret: %d\n", my_ret);
-	printf("cc_ret: %d\n", cc_ret);
+	i = 0;
+	while (++i < argc)
+	{
+		in = atoi(argv[i]);
+		uin = (unsigned int)in;
+		printf("ft_printf: '");
+		fflush(stdout);
+		ret[0] = ft_printf("%c %s %p %d %i %u %x %X %%", in, argv[i], &argv[i],
+				in, in, uin, uin, uin);
+		printf("'\n");
+		printf("  printf : '");
+		ret[1] = printf("%c %s %p %d %i %u %x %X %%", in, argv[i], &argv[i], in,
+				in, uin, uin, uin);
+		printf("'");
+		printf("\n----------------\n");
+		printf("my_ret: %d\n", ret[0]);
+		printf("cc_ret: %d\n", ret[1]);
+	}
 	return (0);
 }
